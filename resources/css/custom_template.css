@@ -1,0 +1,12 @@
+#b{
+	background: url(../img/galaxy.jpg);
+	padding-top: 50px;
+}
+
+#box{
+	border-radius: 5px;
+	margin: 15px;
+	padding-left: 50px;
+	padding-right: 50px;
+	background-color: rgba(221, 219, 219, 0.7);
+}
