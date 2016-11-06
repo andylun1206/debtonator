@@ -108,7 +108,7 @@ function generatePoints() {
     var points = [];
     var x; var y; var radius; var radiusOffset = 0; var bubbleDistance = 25;
     var halfWidth = boxWidth / 2; var halfHeight = canvasHeight / 2;
-    var angle; var offset;
+    var angle = 0; var deltaAngle = 0; var savedRadius = 0; var offset;
 
     for ( var i = 0; i < numBubbles; i++ ) {
         radius = ( sizes[i] * ratio ) / 2;
@@ -117,13 +117,22 @@ function generatePoints() {
             x = halfWidth - radius;
             y = halfHeight - radius;
             radiusOffset = radius;
-        } else if ( i == 1 ) {
-            angle = Math.random() * 2 * Math.PI;
+        } else {
+            if ( i == 1 ) {
+                angle = Math.random() * 2 * Math.PI;
+                deltaAngle = Math.PI / 3;
+                savedRadius = radius;
+            } else if ( i == 7 ) {
+                radiusOffset += ( savedRadius * 2 ) + ( bubbleDistance * ratio );
+                angle = Math.random() * 2 * Math.PI;
+                deltaAngle = Math.PI / 6;
+            } else {
+                angle += deltaAngle;
+            }
+
             offset = radiusOffset + radius + ( bubbleDistance * ratio );
             x = ( halfWidth - radius ) + ( Math.cos( angle ) * offset );
             y = ( halfHeight - radius ) + ( Math.sin( angle ) * offset );
-            radiusOffset += ( radius * 2 ) + ( bubbleDistance * ratio );
-            i = 6;
         }
 
         points.push( [x, y] );
