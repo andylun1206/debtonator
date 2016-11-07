@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Digital Receipt Jar</title>
+
+    <!-- Bootstrap -->
+    <link href="resources/css/bootstrap.min.css" type = "text/css" rel="stylesheet">
+	<link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">
+	<link rel="stylesheet" type="text/css" href="resources/css/custom.css">
+
+	<link href="resources/css/custom_notification.css" type="text/css" rel="stylesheet">
+
+	<script src="https://use.fontawesome.com/a39b8b82a1.js"></script>
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body id="b">
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+		<div class="container">
+			<div class="navbar-header">
+				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+					<span class="sr-only">Toggle navigation</span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+				
+				<a class="navbar-brand" href="#" style="font-size: 30px">Digital Receipt Jar</a>
+			</div>
+			<div class="navbar-collapse collapse">
+				<ul class="nav navbar-nav navbar-right">
+					<li><a href="#"><img src="resources/img/home.png" width="30"></a></li>
+					<li><a href="#"><img src="resources/img/plus_sign.png" width="30"></a></li>
+					<li><a href="#"><img src="resources/img/mail.png" width="30"></a></li>
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="profile_dropdown"><!--My Profile--><img id="profile_img" src="resources/img/silhouette.png" width="30"><b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">Edit my Profile</a></li>
+							<li><a href="#">Add a Tab</a></li>
+							<li><a href="#">Confirmations</a></li>
+							<li class="divider"></li>
+							<li><a href="#">Settings</a></li>
+							<li><a href="#">Help</a></li>
+							<li><a href="#">Log out</a></li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		
+		
+	</div>
+	<div id="box">
+		<div class="container">
+	      	<div class="jumbotron text-center">
+            		<i class="fa fa-check fa-4x"></i>
+          		
+	        	<h1>Notification Centre</h1>
+	        	<a href="#" class="btn btn-warning">Manage my notification settings</a>
+	        	<a href="#msg" class="btn btn-info" data-toggle="modal">Send a direct message</a>
+	      	</div>
+	      	<div class="row">
+	        	<div class="col-md-6">
+	          		<h3><i class="fa fa-exclamation"></i> Incoming Notifications</h3>
+	          		<div class="panel panel-default">
+  						<div class"panel-body">
+  							<ul id"notifications" style="list-style:none">
+  								<li><i class="fa fa-dollar"></i> You owe Julia Stoyko <strong>$150</strong></li>
+  								<li><i class="fa fa-dollar"></i> You owe Andy Lun <strong>$40</strong></li>
+  								<li><i class="fa fa-dollar"></i> You owe Zach Tiessen <strong>$10</strong></li>
+  								<li><i class="fa fa-dollar"></i> You owe some_email@gmail.com <strong>$5</strong></li>
+  								<li><i class="fa fa-dollar"></i> You owe Elizabeth Kenyon <strong>$2</strong></li>
+  							</ul>
+  						</div>
+					</div>
+	          		<a href="#">See my sent notifications</a>
+	        	</div>
+        		<div class="col-md-6">
+          			<h3><i class="fa fa-envelope-open"></i> Message Inbox</h3>
+          			<div class="panel panel-default">
+  						<div class="panel-body">
+  						<ul id"messages" style="list-style: none">
+  							<li><a href="#"<i class="fa fa-envelope"></i></a> Renee Peters<p class="right">19/10/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope"></i></a> Elizabeth Kenyon<p class="right">15/09/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Julia Stoyko<p class="right">10/09/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Melissa Pearson<p class="right">03/07/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Brynn Mayo<p class="right">27/02/16</p></li>
+
+  						</ul>
+  						</div>
+					</div>
+          		<a href="#">See my sent messages</a>
+	      	</div>
+	    </div>
+	</div>
+
+
+
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <div class="modal fade" id="msg" role="dialog">
+    	<div class="modal-dialog">
+    		<div class="modal-content">
+    			<div class="modal-header">
+    				<h4>Send message</h4>
+    			</div>
+    			<div class="modal-body">
+    				<form class="form-inline">
+ 					<div class="form-group">
+    					<label for="user">To:</label>
+    					<input type="user" class="form-control" id="user" placeholder="Enter username/email">
+  					</div>
+  				</form>
+  				<p></p>
+			 	  <div class="form-group">
+				    <label for="message">Message:</label>
+				    <input type="message" class="form-control" id="message" placeholder="Type message...">
+			  	</div>
+    			</div>
+    			<div class="modal-footer">
+    				<a class="btn btn-danger" data-dismiss="modal">Discard</a>
+    				<a class="btn btn-info" data-dismiss="modal">Send</a>
+    			</div>
+    		</div>
+    	</div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="resources/js/bootstrap.min.js"></script>
+  </body>
+</html>

@@ -1,0 +1,13 @@
+body {
+	padding-top: 100px;
+}
+
+li {
+	font-family: georgia;
+	padding: 1em 0;
+}
+
+.right {
+	color: #A9A9A9;
+	float: right;
+}
