@@ -1,3 +1,20 @@
+// GENERAL JS
+
+var otherUserName;
+var amountOwed;
+
+function enterUserName(){
+	otherUserName = document.getElementById("other_user").value;
+	alert(otherUserName);
+	//addBubble();
+}
+
+function enterInput(){
+	var input = document.getElementById("other_user").value;
+	alert(input);
+}
+
+
 var canvas; var context; var box;
 
 var names = []; var amounts = []; var sizes = [];
@@ -17,6 +34,35 @@ function initialize() {
     redrawCanvas();
 }
 
+function addBubble() {
+	otherUserName = document.getElementById("other_user").value;
+	amountOwed = document.getElementById("amount_owed").value;
+	alert(otherUserName);
+    if ( amountOwed != 0 ) {
+        var added = false; var posn;
+
+        for ( var i = 0; i < numBubbles && !added; i++ ) {
+            if ( Math.abs( amountOwed ) >= Math.abs( amounts[i] ) ) {
+                posn = i;
+                added = true;
+            }
+        }
+
+        if ( !added ) {
+            if ( numBubbles == 0 ) {
+                posn = 0;
+            } else {
+                posn = numBubbles;
+            }
+        }
+
+        names.insert( posn, otherUserName ); amounts.insert( posn, amountOwed ); sizes.insert( posn, calculateSize( amountOwed ) );
+        numBubbles++;
+    }
+
+    redrawCanvas();
+}
+// get rid of later
 function addBubble( name, amount ) {
     if ( amount != 0 ) {
         var added = false; var posn;
@@ -144,3 +190,36 @@ function generatePoints() {
 Array.prototype.insert = function ( index, item ) {
     this.splice( index, 0, item );
 }
+
+
+
+/*
+function addBubble( ) {
+    if ( amountOwed != 0 ) {
+        var added = false; var posn;
+
+        for ( var i = 0; i < numBubbles && !added; i++ ) {
+            if ( Math.abs( amountOwed ) >= Math.abs( amounts[i] ) ) {
+                posn = i;
+                added = true;
+            }
+        }
+
+        if ( !added ) {
+            if ( numBubbles == 0 ) {
+                posn = 0;
+            } else {
+                posn = numBubbles;
+            }
+        }
+
+        names.insert( posn, name ); amounts.insert( posn, amountOwed ); sizes.insert( posn, calculateSize( amountOwed ) );
+        numBubbles++;
+    }
+
+    redrawCanvas();
+}
+*/
+
+
+
