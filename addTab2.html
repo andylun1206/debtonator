@@ -5,12 +5,13 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <title>Digital Receipt Jar</title>
+    <title>Digital Receipt Jar: Adding Notifications</title>
 
     <!-- Bootstrap -->
     <link href="resources/css/bootstrap.min.css" type = "text/css" rel="stylesheet">
-	<link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="resources/css/custom.css">
+	<!--<link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">-->
+	<link rel="stylesheet" type="text/css" href="resources/css/custom_addTab.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/custom_addTab2.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,22 +37,16 @@
 					<!--<li class="active"><a href="#">Home <img src="resources/img/house.png" width="30"></a></li>
 					<li><a href="#">Add a Tab <img src="resources/img/plus_sign.png" width="30"></a></li>
 					<li><a href="#">Notification Centre <img src="resources/img/mail.png" width="30"></a></li>-->
-<<<<<<< HEAD:template.html
-					<li><a href="#" class="active"><img src="resources/img/house.png" width="30"></a></li>
-					<li><a href="#"><img src="resources/img/plus_sign.png" width="30"></a></li>
-=======
 					<li><a href="template.html" class="active"><div id="house"><img src="resources/img/house.png" width="30"></div></a></li>
 					<div id="popup" style="display: none">Home</div>
 					<li><a href="addTab.html"><img src="resources/img/plus_sign.png" width="30"></a></li>
-					<!--<li><a href="#"><img src="resources/img/dollar_check.png" width="30"></a></li>-->
->>>>>>> c339e569c7aaa1c02aac0c124e1588fc814128b1:template.html
 					<li><a href="#"><img src="resources/img/mail.png" width="30"></a></li>
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" id="profile_dropdown"><!--My Profile--><img id="profile_img" src="resources/img/silhouette.png" width="30"><b class="caret"></b></a>
 						<ul class="dropdown-menu">
 							<li><a href="#">Edit my Profile</a></li>
 							<li><a href="#">Preferences</a></li>
-							<li><a href="#">Add a Tab</a></li>
+							<li><a href="addTab.html">Add a Tab</a></li>
 							<li><a href="#">Notification Centre</a></li>
 							<li class="divider"></li>
 							<li><a href="#">Settings</a></li>
@@ -65,15 +60,51 @@
 		
 		
 	</div>
+	
+	<div class="row" id="page_header">
+		<div class="col-sm-12">
+			<h2>Add Notifications</h2>
+		</div>
+	</div>
 	<div id="box">
-		<!-- PUT CODE INSIDE BOX-->
+		
+		<div id="text_entry">
+			<div class="row">
+				<div class="col-sm-8">
+					<form class="form-inline">
+						<div class="form-group">
+						  <!--<label for="sel1" id="select_prompt">Select Debtor...</label>-->
+						  <label class="control-label">Frequency of Notifications:</label>
+						 </div>
+						 <div class="form-group">
+						  <select class="form-control" id="sel1">
+							<option>Daily</option>
+							<option>Weekly</option>
+							<option>Twice a Month</option>
+							<option>Monthly</option>
+						  </select>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div id="buttons">
+			<div class="row">
+				<div class="col-sm-2">
+					
+					<a href="template.html" class="btn btn-default" role="button">Confirm</a>
+							
+				</div>
+				<div class="col-sm-2">
+					<a href="template.html" role="button" class="btn btn-default">Skip Notifications</a>								
+				</div>
+				<div class="col-sm-6"></div>
+			</div>	
+		</div>
+		<div class="row"><div class="col-sm-12"><p></p></div>
 	</div>
 
 
-<<<<<<< HEAD:template.html
-
-=======
->>>>>>> c339e569c7aaa1c02aac0c124e1588fc814128b1:template.html
 
 	<script src="resources/src/custom_template.js"></script>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->

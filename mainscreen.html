@@ -10,6 +10,7 @@
     <!-- Bootstrap -->
     <link href="resources/css/bootstrap.min.css" type = "text/css" rel="stylesheet">
     <link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">
+<script src="resources/js/general.js"></script>
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -19,7 +20,6 @@
     <![endif]-->
 
     <link href = "resources/css/mainscreen.css" type = "text/css" rel = "stylesheet">
-    <script src = "resources/js/mainscreen.js"></script>
 
 </head>
 <body id="b">
@@ -39,20 +39,20 @@
                 <!--<li class="active"><a href="#">Home <img src="resources/img/house.png" width="30"></a></li>
                 <li><a href="#">Add a Tab <img src="resources/img/plus_sign.png" width="30"></a></li>
                 <li><a href="#">Notification Centre <img src="resources/img/mail.png" width="30"></a></li>-->
-                <li><a href="#" class="active"><img src="resources/img/house.png" width="30"></a></li>
-                <li><a href="#"><img src="resources/img/plus_sign.png" width="30"></a></li>
+                <li><a href="mainscreen.html" class="active"><img src="resources/img/house.png" width="30"></a></li>
+                <li><a href="addTab.html"><img src="resources/img/plus_sign.png" width="30"></a></li>
                 <li><a href="#"><img src="resources/img/mail.png" width="30"></a></li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="profile_dropdown"><!--My Profile--><img id="profile_img" src="resources/img/silhouette.png" width="30"><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Edit my Profile</a></li>
                         <li><a href="#">Preferences</a></li>
-                        <li><a href="#">Add a Tab</a></li>
+                        <li><a href="addTab.html">Add a Tab</a></li>
                         <li><a href="#">Notification Centre</a></li>
                         <li class="divider"></li>
                         <li><a href="#">Settings</a></li>
                         <li><a href="#">Help</a></li>
-                        <li><a href="#">Log out</a></li>
+                        <li><a href="signin.html">Log out</a></li>
                     </ul>
                 </li>
             </ul>
@@ -63,22 +63,9 @@
 </div>
 <div id="box">
     <canvas id = "bubblesCanvas" height = "825">
-        <script>
+       <script>
             initialize();
             addBubble( "asdf", -100 );
-            addBubble( "asdfasdfasdfasdf", -10 );
-            addBubble( "asdfasdfasdfasdf", -20 );
-            addBubble( "asdfasdfasdfasdf", 40 );
-            addBubble( "asdfasdfasdfasdf", -30 );
-            addBubble( "asdfasdfasdfasdf", 10 );
-            addBubble( "asdfasdfasdfasdf", -60 );
-            addBubble( "asdfasdfasdfasdf", 50 );
-            addBubble( "asdfasdfasdfasdf", -80 );
-            addBubble( "asdfasdfasdfasdf", 70 );
-            addBubble( "asdfasdfasdfasdf", -10 );
-            addBubble( "asdfasdfasdfasdf", 90 );
-            addBubble( "asdfasdfasdfasdf", -10 );
-            addBubble( "abcd", 150 );
             window.addEventListener( "resize", redrawCanvas, false );
         </script>
     </canvas>
