@@ -7,7 +7,13 @@ li {
 	padding: 1em 0;
 }
 
-.right {
+#date.right {
 	color: #A9A9A9;
 	float: right;
 }
+
+#lentOn.right {
+	color: #FF0000;
+	float: right;
+}
+	

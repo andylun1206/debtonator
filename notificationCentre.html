@@ -9,7 +9,7 @@
 
     <!-- Bootstrap -->
     <link href="resources/css/bootstrap.min.css" type = "text/css" rel="stylesheet">
-	<link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">
+	<!--<link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">-->
 	<link rel="stylesheet" type="text/css" href="resources/css/custom.css">
 
 	<link href="resources/css/custom_notification.css" type="text/css" rel="stylesheet">
@@ -74,31 +74,31 @@
 	          		<div class="panel panel-default">
   						<div class"panel-body">
   							<ul id"notifications" style="list-style:none">
-  								<li><i class="fa fa-dollar"></i> You owe Julia Stoyko <strong>$150</strong></li>
-  								<li><i class="fa fa-dollar"></i> You owe Andy Lun <strong>$40</strong></li>
-  								<li><i class="fa fa-dollar"></i> You owe Zach Tiessen <strong>$10</strong></li>
-  								<li><i class="fa fa-dollar"></i> You owe some_email@gmail.com <strong>$5</strong></li>
-  								<li><i class="fa fa-dollar"></i> You owe Elizabeth Kenyon <strong>$2</strong></li>
+  								<li><i class="fa fa-dollar"></i> You owe Jim Halpert <strong>$150</strong><p id="lentOn" class="right">From 6 months ago</p></li>
+  								<li><i class="fa fa-dollar"></i> You owe Michael Scott <strong>$40</strong><p id="lentOn" class="right">From 2 months ago</p></li>
+  								<li><i class="fa fa-dollar"></i> You owe Toby Flenderson <strong>$10</strong><p id="lentOn" class="right">From 25 days ago</p></li>
+  								<li><i class="fa fa-dollar"></i> You owe phyllis_vance@gmail.com <strong>$5</strong><p id="lentOn" class="right">From 17 days ago</p></li>
+  								<li><i class="fa fa-dollar"></i> You owe Kelly Kapoor <strong>$2</strong><p id="lentOn" class="right">From one week ago</p></li>
   							</ul>
   						</div>
 					</div>
-	          		<a href="#">See my sent notifications</a>
+	          		<a href="#" class="btn btn-success">See my sent notifications</a>
 	        	</div>
         		<div class="col-md-6">
           			<h3><i class="fa fa-envelope-open"></i> Message Inbox</h3>
           			<div class="panel panel-default">
   						<div class="panel-body">
   						<ul id"messages" style="list-style: none">
-  							<li><a href="#"<i class="fa fa-envelope"></i></a> Renee Peters<p class="right">19/10/16</p></li>
-  							<li><a href="#"<i class="fa fa-envelope"></i></a> Elizabeth Kenyon<p class="right">15/09/16</p></li>
-  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Julia Stoyko<p class="right">10/09/16</p></li>
-  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Melissa Pearson<p class="right">03/07/16</p></li>
-  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Brynn Mayo<p class="right">27/02/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope"></i></a> Dwight Schrute<p id="date" class="right">19/10/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope"></i></a> Pam Beasley<p id="date" class="right">15/09/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Michael Scott<p id="date" class="right">10/09/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Jim Halpert<p id="date" class="right">03/07/16</p></li>
+  							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Andy Bernard<p id="date" class="right">27/02/16</p></li>
 
   						</ul>
   						</div>
 					</div>
-          		<a href="#">See my sent messages</a>
+          		<a href="#" class="btn btn-success">See my sent messages</a>
 	      	</div>
 	    </div>
 	</div>
@@ -108,30 +108,39 @@
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <div class="modal fade" id="msg" role="dialog">
-    	<div class="modal-dialog">
-    		<div class="modal-content">
-    			<div class="modal-header">
-    				<h4>Send message</h4>
-    			</div>
-    			<div class="modal-body">
-    				<form class="form-inline">
- 					<div class="form-group">
-    					<label for="user">To:</label>
-    					<input type="user" class="form-control" id="user" placeholder="Enter username/email">
-  					</div>
-  				</form>
-  				<p></p>
-			 	  <div class="form-group">
-				    <label for="message">Message:</label>
-				    <input type="message" class="form-control" id="message" placeholder="Type message...">
-			  	</div>
-    			</div>
-    			<div class="modal-footer">
-    				<a class="btn btn-danger" data-dismiss="modal">Discard</a>
-    				<a class="btn btn-info" data-dismiss="modal">Send</a>
-    			</div>
-    		</div>
-    	</div>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4>Send message</h4>
+          </div>
+          <div class="modal-body">
+            <form class="form-inline">
+          <div class="form-group">
+              <label for="user">To:</label>
+              <input type="user" class="form-control" id="user" placeholder="Enter email or @username">
+            </div>
+          </form>
+          <p></p>
+          <div class="form-group">
+            <label for="sel1">Select standard message:</label>
+            <select class="form-control" id="sel1">
+              <option>Select...</option>
+              <option>Please pay me back ASAP!</option>
+              <option>I need my money by the end of the month.</option>
+              <option>I promise I'll pay you within the week</option>
+              </select>
+          </div>
+          <div class="form-group">
+              <label for="custom-msg">OR Custom message:</label>
+              <textarea class="form-control" rows="5" id="comment" placeholder="Type message..."></textarea>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <a class="btn btn-danger" data-dismiss="modal">Discard</a>
+            <a class="btn btn-info" data-dismiss="modal">Send</a>
+          </div>
+        </div>
+      </div>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
