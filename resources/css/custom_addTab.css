@@ -21,10 +21,7 @@
 #box{
 	border-radius: 5px;
 	margin: 15px;
-<<<<<<< HEAD
-=======
 	padding-top: 15px;
->>>>>>> c339e569c7aaa1c02aac0c124e1588fc814128b1
 	padding-left: 50px;
 	padding-right: 50px;
 	background-color: rgba(221, 219, 219, 0.5);
@@ -51,15 +48,6 @@
 	text-align: right;
 }
 
-<<<<<<< HEAD
-#or{
-	text-align: left;
-	font-style: italic;
-}
-#who_owes{
-	font-style: italic;
-}
-=======
 #prompt{
 	font-style: normal;
 }
@@ -75,32 +63,12 @@
 /*#select_prompt{
 	font-style: italic;
 }*/
->>>>>>> c339e569c7aaa1c02aac0c124e1588fc814128b1
 
 #owes{
 	font-size: 20px;
 }
 
 #owing_box{
-<<<<<<< HEAD
-	border: 1px solid black;
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.7);
-	padding: 6px;
-	bottom: 5px;
-}
-
-#text_entry{
-	border: 1px solid black;
-	border-radius: 5px;
-	background-color: rgba(255, 255, 255, 0.7);
-	color: rgba(0, 0, 0, 0.6);
-	font-style: italic;
-}
-
-#next_btn{
-	margin-top: 10px;
-=======
 	margin-top: 20px;
 	margin-bottom: 15px;
 	border: 1px solid black;
@@ -123,7 +91,6 @@
 
 #next_btn{
 	margin-bottom: 15px;
->>>>>>> c339e569c7aaa1c02aac0c124e1588fc814128b1
 }
 /*#profile_img{
 	width: 3%;
