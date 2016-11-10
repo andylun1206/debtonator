@@ -9,47 +9,16 @@ var red = '#FF0000'; var black = '#000000';
 function initialize() {
     if ( typeof( Storage ) !== "undefined" ) {
         if ( sessionStorage.getObject( "numBubbles" ) === null ) {
-            sessionStorage.setObject( "names", ["asdf", "sdf"] );
-            sessionStorage.setObject( "amounts", ["150", "10"] );
-            sessionStorage.setObject( "sizes", [400, 132.5] );
-            sessionStorage.setObject( "numBubbles", 2 );
+            sessionStorage.setObject( "names", ["Regina George", "Aaron Samuels", "Gretchen Wieners", "Cady Heron"] );
+            sessionStorage.setObject( "amounts", [50, -20, 30, 40] );
+            sessionStorage.setObject( "sizes", [244.4, 163.2, 192.0, 219.1] );
+            sessionStorage.setObject( "numBubbles", 4 );
         }
 
         redrawCanvas();
     } else {
         console.log( "Browser does not support web storage." );
     }
-}
-
-function addBubble() {
-    otherUserName = document.getElementById("other_user").value;
-    amountOwed = document.getElementById("amount_owed").value;
-    if ( amountOwed != 0 ) {
-        var added = false; var posn;
-        var numBubbles = sessionStorage.getItem( "numBubbles" );
-
-        for ( var i = 0; i < numBubbles && !added; i++ ) {
-            if ( Math.abs( amountOwed ) >= Math.abs( sessionStorage.getObject( "amounts" )[i] ) ) {
-                posn = i;
-                added = true;
-            }
-        }
-
-        if ( !added ) {
-            if ( numBubbles == 0 ) {
-                posn = 0;
-            } else {
-                posn = numBubbles;
-            }
-        }
-
-        sessionStorage.setObject( "names", sessionStorage.getObject( "names" ).insert( posn, otherUserName ) );
-        sessionStorage.setObject( "amounts", sessionStorage.getObject( "amounts" ).insert( posn, amountOwed ) );
-        sessionStorage.setObject( "sizes", sessionStorage.getObject( "sizes" ).insert( posn, calculateSize( amountOwed ) ) );
-        sessionStorage.setItem( "numBubbles", sessionStorage.getItem( "numBubbles" ) + 1 );
-    }
-
-    redrawCanvas();
 }
 
 function redrawCanvas() {
