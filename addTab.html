@@ -68,10 +68,10 @@
 				<div class="col-sm-10">
 					<div class="form-group">
 						<label for="usr" id="prompt">Username:</label>
-						<div id="popup" style="display: none">Info</div>
 						<input id="other_user" type="text" class="form-control"placeholder="Other Person's Username">
-
+						<button id="confirm_button" class="btn btn-default" role="button" onclick="updateOptionsUserName();">Confirm</button>
 					</div>
+
 				</div>
 				<div class="col-sm-2">
 				</div>
@@ -94,6 +94,7 @@
 						<label for="usr" id="prompt">Email:</label>
 						<input id="other_email" type="text" class="form-control" placeholder="Other Person's Email">
 					</div>
+					<button class="btn btn-default" role="button" onclick="updateOptionsName();">Confirm</button>
 				</div>
 				<div class="col-sm-2"></div>
 			</div>
@@ -111,7 +112,7 @@
 					  <!--<label for="sel1" id="select_prompt">Select Debtor...</label>-->
 					  <select class="form-control" id="sel1">
 						<option>You</option>
-						<option>Bill Dollard</option>
+						<option id="other_option">Bill Dollard</option>
 					  </select>
 					</div>
 				</div>
@@ -121,9 +122,9 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 					  <!--<label for="sel1" id="select_prompt">Select Debtee...</label>-->
-					  <select class="form-control" id="sel1">
+					  <select class="form-control" id="first_selection">
 						<option>You</option>
-						<option>Bill Dollard</option>
+						<option id="other_option2">Bill Dollard</option>
 					  </select>
 					</div>
 				</div>

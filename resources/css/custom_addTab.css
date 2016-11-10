@@ -9,6 +9,10 @@
 	/*padding-left: 50px;*/
 }
 
+#confirm_button{
+	margin-top:10px;
+}
+
 #background_img{
 	opacity: 0.7;
 }
