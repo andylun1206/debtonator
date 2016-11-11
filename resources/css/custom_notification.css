@@ -1,5 +1,5 @@
 body {
-	padding-top: 100px;
+	padding-top: 70px;
 }
 
 li {
@@ -16,4 +16,7 @@ li {
 	color: #FF0000;
 	float: right;
 }
-	
+
+#sent{
+	color: black;
+}

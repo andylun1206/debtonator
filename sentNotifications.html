@@ -62,23 +62,22 @@
 	<div id="box">
 		<div class="container">
 	      	<div class="jumbotron text-center">
-            		<i class="fa fa-comments fa-4x"></i>
+            		<i class="fa fa-send-o fa-4x"></i>
           		
-	        	<h1>Notification Centre</h1>
-	        	<a href="sentNotifications.html" class="btn btn-warning">See sent notifications/messages</a>
-	        	<a href="#" class="btn btn-info">Send a direct message</a>
+	        	<h2>Outgoing Communication</h2>
+	        	<a href="notificationCentre.html" class="btn btn-danger">Back to Notification Centre</a>
 	      	</div>
 	      	<div class="row">
 	        	<div class="col-md-6">
 	          		<div class="panel panel-default">
   						<div class"panel-body">
-                <h3 align="center"><i class="fa fa-exclamation"></i><strong> Incoming Notifications</strong></h3>
+                <h4 align="center"><i class="fa fa-exclamation"></i><strong> Sent Notifications</strong></h4>
   							<ul id"notifications" style="list-style:none">
-  								<li><i class="fa fa-dollar"></i> You owe Jim Halpert <strong>$148</strong><p id="lentOn" class="right">From 6 months ago</p></li>
-  								<li><i class="fa fa-dollar"></i> You owe Michael Scott <strong>$1.50</strong><p id="lentOn" class="right">From 2 months ago</p></li>
-  								<li><i class="fa fa-dollar"></i> You owe Toby Flenderson <strong>$10</strong><p id="lentOn" class="right">From 25 days ago</p></li>
-  								<li><i class="fa fa-dollar"></i> You owe phyllis_vance@gmail.com <strong>$5</strong><p id="lentOn" class="right">From 17 days ago</p></li>
-  								<li><i class="fa fa-dollar"></i> You owe Kelly Kapoor <strong>$2</strong><p id="lentOn" class="right">From one week ago</p></li>
+  								<li><i class="fa fa-dollar"></i> Dwight Schrute owes you <strong>$15</strong><p id="lentOn" class="right">From 3 months ago</p></li>
+  								<li><i class="fa fa-dollar"></i> Andy Bernard owes you <strong>$55</strong><p id="lentOn" class="right">From 2 months ago</p></li>
+  								<li><i class="fa fa-dollar"></i> Stanley Hudson owes you <strong>$76</strong><p id="lentOn" class="right">From 22 days ago</p></li>
+  								<li><i class="fa fa-dollar"></i> Michael Scott owes you <strong>$30</strong><p id="lentOn" class="right">From 15 days ago</p></li>
+  								<li><i class="fa fa-dollar"></i> Jim Halpert owes you <strong>$200</strong><p id="lentOn" class="right">From one week ago</p></li>
   							</ul>
   						</div>
 					</div>
@@ -86,13 +85,13 @@
         		<div class="col-md-6">
           			<div class="panel panel-default">
   						  <div class="panel-body">
-                  <h3 align="center"><i class="fa fa-envelope-open"></i><strong>Message Inbox</strong></h3>
+                  <h4 align="center"><i class="fa fa-envelope-open"></i> <strong>Sent Messages</strong></h4>
     						  <ul id"messages" style="list-style: none">
-    							<li><a href="#"<i class="fa fa-envelope"></i></a> Dwight Schrute<p id="date" class="right">19/10/16</p></li>
-    							<li><a href="#"<i class="fa fa-envelope"></i></a> Pam Beasley<p id="date" class="right">15/09/16</p></li>
-    							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Michael Scott<p id="date" class="right">10/09/16</p></li>
-    							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Jim Halpert<p id="date" class="right">03/07/16</p></li>
-    							<li><a href="#"<i class="fa fa-envelope-open-o"></i></a> Andy Bernard<p id="date" class="right">27/02/16</p></li>
+    							<li><a href="#"<i class="fa fa-envelope-square"></i></a> Dwight Schrute<p id="date" class="right">18/10/16</p></li>
+    							<li><a href="#"<i class="fa fa-envelope-square"></i></a> Pam Beasley<p id="date" class="right">14/09/16</p></li>
+    							<li><a href="#"<i class="fa fa-envelope-square"></i></a> Michael Scott<p id="date" class="right">09/09/16</p></li>
+    							<li><a href="#"<i class="fa fa-envelope-square"></i></a> Jim Halpert<p id="date" class="right">02/07/16</p></li>
+    							<li><a href="#"<i class="fa fa-envelope-square"></i></a> Andy Bernard<p id="date" class="right">26/02/16</p></li>
   						</ul>
   						</div>
 					</div>
@@ -148,7 +147,18 @@
             <h4>Manage Notification Settings</h4>
           </div>
           <div class="modal-body">
-
+            <!--change default time between reminders-->
+             <div class="form-group">
+              <label for="sel2">Change default notification frequency:</label>
+              <select class="form-control" id="sel2">
+              <option>Select...</option>
+              <option>Daily</option>
+              <option>Weekly</option>
+              <option>Twice a month</option>
+              <option>Monthly</option>
+              <option>Custom</option>
+              </select>
+          </div>
           </div>
           <div class="modal-footer">
             <a class="btn btn-danger" data-dismiss="modal">Cancel</a>
