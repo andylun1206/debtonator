@@ -1,7 +1,7 @@
 var canvas; var context; var box;
 
 var canvasWidth = 1920; var canvasHeight = 825; var windowOffsetX = 120;
-var boxWidth; var ratio;
+var boxWidth;
 
 var MAX_BUBBLE_SIZE = 400;
 var red = '#FF0000'; var black = '#000000';
@@ -10,8 +10,9 @@ function initialize() {
     if ( typeof( Storage ) !== "undefined" ) {
         if ( sessionStorage.getObject( "numBubbles" ) === null ) {
             sessionStorage.setObject( "names", ["Regina George", "Aaron Samuels", "Gretchen Wieners", "Cady Heron"] );
-            sessionStorage.setObject( "amounts", [50, -20, 30, 40] );
-            sessionStorage.setObject( "sizes", [244.4, 163.2, 192.0, 219.1] );
+            sessionStorage.setObject( "amounts", [50, 40, 30, -20] );
+            sessionStorage.setObject( "sizes", [244.4, 219.1, 192.0, 163.2] );
+            sessionStorage.setObject( "images", ["reginaGeorge", "aaronSamuels", "gretchenWieners", "cadyHeron"] );
             sessionStorage.setObject( "numBubbles", 4 );
         }
 
@@ -28,32 +29,59 @@ function redrawCanvas() {
 
     boxWidth = box.clientWidth - windowOffsetX;
     canvas.width = boxWidth;
-    ratio = boxWidth / canvasWidth;
+    var ratio = boxWidth / canvasWidth;
 
-    var points = generatePoints();
+    var points = generatePoints( ratio );
 
     for ( var i = 0; i < sessionStorage.getObject( "numBubbles" ); i++ ) {
-        drawBubble( points[i][0], points[i][1], sessionStorage.getObject("sizes")[i] * ratio, sessionStorage.getObject("names")[i], sessionStorage.getObject("amounts")[i] );
+        document.getElementsByClassName( "bubbleButton" ).remove();
+        drawBubble( points[i][0], points[i][1], sessionStorage.getObject( "sizes" )[i] * ratio,
+            sessionStorage.getObject( "names" )[i], sessionStorage.getObject( "amounts" )[i],
+            sessionStorage.getObject( "images" )[i] );
     }
 }
 
-function drawBubble( x, y, diameter, name, amount ) {
+function drawBubble( x, y, diameter, name, amount, imgSrc ) {
     var radius = diameter / 2;
     var arcX = x + radius; var arcY = y + radius;
+    var lineWidth = 3; var horizontalOffset = 61; var verticalOffset = 83;
 
     var img = document.createElement( "img" );
-    img.src = "resources/img/defaultProfilePic.png";
+    img.src = "resources/img/" + imgSrc + "ProfilePic.png";
     img.onload = function() {
+        // draw image
         context.drawImage( img, x, y, diameter, diameter );
 
+        // add button
+        var button = document.createElement( "button" );
+        button.setAttribute( "type", "button" );
+        button.setAttribute( "class", "bubbleButton" );
+        button.style.cssText = ""
+                                + "background-color: transparent; "
+                                + "border-color: transparent; "
+                                + "position: absolute; "
+                                + "left: " + ( x + horizontalOffset ) + "px; "
+                                + "top: " + ( y + verticalOffset ) + "px; "
+                                + "height: " + ( diameter + lineWidth * 2 ) + "px; "
+                                + "width: "+ ( diameter + lineWidth * 2 ) + "px; "
+                                + "border-radius: " + ( diameter + lineWidth * 2 ) + "px; "
+                                + "margin: 0px; "
+                                + "border: 0px; "
+                                + "padding: 0px; ";
+        // button.setAttribute( "onclick", "" );   // place holder for functionality
+        box.appendChild( button );
+
+        // draw circle
         context.beginPath();
         context.arc( arcX, arcY, radius, 0, 2 * Math.PI, false );
-        context.lineWidth = 3;
+        context.lineWidth = lineWidth;
         context.strokeStyle = getColour( amount );
         context.stroke();
 
+        // add text
         var amountText = "$".concat( Math.abs( amount ) );
-        context.font = "12px sans-serif";  // dynamic ratio?
+        context.font = "12px sans-serif";
+        context.fillStyle = "black";
         context.fillText( name, centerText( name, arcX ), arcY + radius - 17 );
         context.fillText( amountText, centerText( amountText, arcX ), arcY + radius - 5 );
     };
@@ -88,11 +116,11 @@ function getColour( amount ) {
     return colour;
 }
 
-function generatePoints() {
+function generatePoints( ratio ) {
     var points = [];
-    var x; var y; var radius; var radiusOffset = 0; var bubbleDistance = 25;
+    var x; var y; var radius; var angle = 0; var deltaAngle = 0; var biggestRadius = 0;
+    var radiusOffset = 0; var bubbleOffset = ( 25 * ratio ); var totalOffset;
     var halfWidth = boxWidth / 2; var halfHeight = canvasHeight / 2;
-    var angle = 0; var deltaAngle = 0; var savedRadius = 0; var offset;
 
     for ( var i = 0; i < sessionStorage.getObject( "numBubbles" ); i++ ) {
         radius = ( sessionStorage.getObject( "sizes" )[i] * ratio ) / 2;
@@ -103,24 +131,24 @@ function generatePoints() {
             radiusOffset = radius;
         } else {
             if ( i == 1 ) {
-                angle = Math.random() * 2 * Math.PI;
-                deltaAngle = Math.PI / 3;
-                savedRadius = radius;
+                angle = 0; deltaAngle = Math.PI / 3;
+                biggestRadius = radius;
             } else if ( i == 7 ) {
-                radiusOffset += ( savedRadius * 2 ) + ( bubbleDistance * ratio );
-                angle = Math.random() * 2 * Math.PI;
-                deltaAngle = Math.PI / 6;
+                radiusOffset += ( 2 * biggestRadius ) + ( bubbleOffset );
+                angle = 0; deltaAngle = Math.PI / 6;
+                biggestRadius = radius;
             } else {
                 angle += deltaAngle;
             }
 
-            offset = radiusOffset + radius + ( bubbleDistance * ratio );
-            x = ( halfWidth - radius ) + ( Math.cos( angle ) * offset );
-            y = ( halfHeight - radius ) + ( Math.sin( angle ) * offset );
+            totalOffset = radiusOffset + bubbleOffset + radius;
+            x = halfWidth + totalOffset * Math.cos( angle ) - radius;
+            y = halfHeight - totalOffset * Math.sin( angle ) - radius;
         }
 
         points.push( [x, y] );
     }
+
 
     return points;
 }
@@ -136,4 +164,17 @@ Storage.prototype.setObject = function( key, object ) {
 Storage.prototype.getObject = function ( key ) {
     return JSON.parse( this.getItem( key ) );
 }
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild( this );
+}
+
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for ( var i = 0; i < this.length; i++ ) {
+        if ( this[i] && this[i].parentElement ) {
+            this[i].parentElement.removeChild( this[i] );
+        }
+    }
+}
+
 

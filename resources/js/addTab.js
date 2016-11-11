@@ -40,6 +40,7 @@ function addBubble(otherUserName, amountOwed) {
         temp = sessionStorage.getObject( "names" ); temp.insert( posn, otherUserName ); sessionStorage.setObject( "names", temp );
         temp = sessionStorage.getObject( "amounts" ); temp.insert( posn, amountOwed ); sessionStorage.setObject( "amounts", temp );
         temp = sessionStorage.getObject( "sizes" ); temp.insert( posn, calculateSize( amountOwed ) ); sessionStorage.setObject( "sizes", temp );
+        temp = sessionStorage.getObject( "images" ); temp.insert( posn, "default" ); sessionStorage.setObject( "images", temp );
         sessionStorage.setObject( "numBubbles", sessionStorage.getObject( "numBubbles" ) + 1 );
     }
 }

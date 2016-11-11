@@ -8,3 +8,4 @@ November 03, 2016 - Added the template for the screen. </br>
 November 03, 2016 - Updated template html and css documents for new template. </br>
 November 03, 2016 - Updated template file to only have icons rather than words in navbar. </br>
 November 03, 2016 - Updated addTab for new template. Still issues with padding. </br>
+November 11, 2016 - Integrated add tab functionality to main screen. </br>
