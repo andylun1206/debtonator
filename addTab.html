@@ -111,7 +111,7 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 					  <!--<label for="sel1" id="select_prompt">Select Debtor...</label>-->
-					  <select class="form-control" id="sel1">
+					  <select class="form-control" id="first_selection">
 						<option>You</option>
 						<option id="other_option">Bill Dollard</option>
 					  </select>
@@ -123,7 +123,7 @@
 				<div class="col-sm-3">
 					<div class="form-group">
 					  <!--<label for="sel1" id="select_prompt">Select Debtee...</label>-->
-					  <select class="form-control" id="first_selection">
+					  <select class="form-control" id="second_selection">
 						<option>You</option>
 						<option id="other_option2">Bill Dollard</option>
 					  </select>
@@ -137,6 +137,26 @@
 				</div>
 			</div>
 		</div>
+		<div id="text_entry">
+			<div class="row">
+				<div class="col-sm-8">
+					<form class="form-inline">
+						<div class="form-group">
+							<!--<label for="sel1" id="select_prompt">Select Debtor...</label>-->
+							<label class="control-label">Frequency of Notifications:</label>
+						</div>
+						<div class="form-group">
+							<select class="form-control" id="sel1">
+								<option>Daily</option>
+								<option>Weekly</option>
+								<option>Twice a Month</option>
+								<option>Monthly</option>
+							</select>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
 		<div class="row">
 			<div class="col-sm-3">
 				<!--<a href="addTab2.html" class="btn btn-default" role="button" id="next_btn" onclick="otherUser();">Next</a>-->
@@ -145,12 +165,8 @@
 			<div class="col-sm-9">
 			</div>
 		</div>
-		<div class="row">
-			<div class="col-sm-12">
-				<!--<button class="btn btn-default" role="button" onclick="test2();">Click me</button>-->
-				<p></p>
-			</div>
-		</div>
+
+
 	</div>
 
 
