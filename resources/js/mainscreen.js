@@ -3,17 +3,19 @@ var canvas; var context; var box;
 var canvasWidth = 1920; var canvasHeight = 825; var windowOffsetX = 120;
 var boxWidth;
 
-var MAX_BUBBLE_SIZE = 400;
+var MAX_BUBBLE_SIZE = 350;
 var red = '#FF0000'; var black = '#000000';
 
 function initialize() {
     if ( typeof( Storage ) !== "undefined" ) {
         if ( sessionStorage.getObject( "numBubbles" ) === null ) {
             sessionStorage.setObject( "names", ["Regina George", "Aaron Samuels", "Gretchen Wieners", "Cady Heron"] );
-            sessionStorage.setObject( "amounts", [50, 40, 30, -20] );
-            sessionStorage.setObject( "sizes", [244.4, 219.1, 192.0, 163.2] );
+            sessionStorage.setObject( "amounts", [80, 50, 30, -20] );
+            sessionStorage.setObject( "sizes", [185.51, 150.76, 121.49, 105.03] );
             sessionStorage.setObject( "images", ["reginaGeorge", "aaronSamuels", "gretchenWieners", "cadyHeron"] );
             sessionStorage.setObject( "numBubbles", 4 );
+            var angles = [( Math.random() * 2 * Math.PI ), ( Math.random() * 2 * Math.PI )]
+            sessionStorage.setObject( "angles", angles );
         }
 
         redrawCanvas();
@@ -59,6 +61,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         button.style.cssText = ""
                                 + "background-color: transparent; "
                                 + "border-color: transparent; "
+                                + "outline: 0; "
                                 + "position: absolute; "
                                 + "left: " + ( x + horizontalOffset ) + "px; "
                                 + "top: " + ( y + verticalOffset ) + "px; "
@@ -91,10 +94,15 @@ function calculateSize( amount ) {
     var size;
     amount = Math.abs( amount );
 
-    if ( amount > 150 ) {
+    if ( amount > 500 ) {
+        // static size
         size = MAX_BUBBLE_SIZE;
+    } else if ( amount > 150 ) {
+        // linear equation scale size
+        size = 0.358166 * amount + 170.917;
     } else {
-        size = -0.00894062 * Math.pow( amount, 2 ) + 3.33388 * amount + 100.057;
+        // quadratic equation scale size
+        size = -0.00609539 * Math.pow( amount, 2 ) + 1.95092 * amount + 68.4475;
     }
 
     return size;
@@ -131,11 +139,11 @@ function generatePoints( ratio ) {
             radiusOffset = radius;
         } else {
             if ( i == 1 ) {
-                angle = 0; deltaAngle = Math.PI / 3;
+                angle = sessionStorage.getObject( "angles" )[0]; deltaAngle = Math.PI / 3;
                 biggestRadius = radius;
             } else if ( i == 7 ) {
                 radiusOffset += ( 2 * biggestRadius ) + ( bubbleOffset );
-                angle = 0; deltaAngle = Math.PI / 6;
+                angle = sessionStorage.getObject( "angles" )[1]; deltaAngle = Math.PI / 6;
                 biggestRadius = radius;
             } else {
                 angle += deltaAngle;
