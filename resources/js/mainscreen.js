@@ -1,20 +1,180 @@
-function updateBubbles( img, locationX, locationY, size, colour ) {
-    var canvas = document.getElementById( 'bubblesCanvas' );
-    var context = canvas.getContext( '2d' );
+var canvas; var context; var box;
 
-    var centerX = locationX;
-    var centerY = locationY;
-    var radius = size;
+var canvasWidth = 1920; var canvasHeight = 825; var windowOffsetX = 120;
+var boxWidth;
 
-    var profilePic = new Image();
-    profilePic.src = img;
-    profilePic.onload = function() {
-        context.beginPath();
-        context.arc( centerX-50, centerY-50, radius, 0, 2 * Math.PI, false );
-        context.fillStyle = context.createPattern( this, "no-repeat" );
-        context.fill();
-        context.lineWidth = 3;
-        context.strokeStyle = colour;
-        context.stroke();
+var MAX_BUBBLE_SIZE = 400;
+var red = '#FF0000'; var black = '#000000';
+
+function initialize() {
+    if ( typeof( Storage ) !== "undefined" ) {
+        if ( sessionStorage.getObject( "numBubbles" ) === null ) {
+            sessionStorage.setObject( "names", ["Regina George", "Aaron Samuels", "Gretchen Wieners", "Cady Heron"] );
+            sessionStorage.setObject( "amounts", [50, 40, 30, -20] );
+            sessionStorage.setObject( "sizes", [244.4, 219.1, 192.0, 163.2] );
+            sessionStorage.setObject( "images", ["reginaGeorge", "aaronSamuels", "gretchenWieners", "cadyHeron"] );
+            sessionStorage.setObject( "numBubbles", 4 );
+        }
+
+        redrawCanvas();
+    } else {
+        console.log( "Browser does not support web storage." );
     }
 }
+
+function redrawCanvas() {
+    canvas = document.getElementById( 'bubblesCanvas' );
+    context = canvas.getContext( '2d' );
+    box = document.getElementById( 'box' );
+
+    boxWidth = box.clientWidth - windowOffsetX;
+    canvas.width = boxWidth;
+    var ratio = boxWidth / canvasWidth;
+
+    var points = generatePoints( ratio );
+
+    for ( var i = 0; i < sessionStorage.getObject( "numBubbles" ); i++ ) {
+        document.getElementsByClassName( "bubbleButton" ).remove();
+        drawBubble( points[i][0], points[i][1], sessionStorage.getObject( "sizes" )[i] * ratio,
+            sessionStorage.getObject( "names" )[i], sessionStorage.getObject( "amounts" )[i],
+            sessionStorage.getObject( "images" )[i] );
+    }
+}
+
+function drawBubble( x, y, diameter, name, amount, imgSrc ) {
+    var radius = diameter / 2;
+    var arcX = x + radius; var arcY = y + radius;
+    var lineWidth = 3; var horizontalOffset = 61; var verticalOffset = 83;
+
+    var img = document.createElement( "img" );
+    img.src = "resources/img/" + imgSrc + "ProfilePic.png";
+    img.onload = function() {
+        // draw image
+        context.drawImage( img, x, y, diameter, diameter );
+
+        // add button
+        var button = document.createElement( "button" );
+        button.setAttribute( "type", "button" );
+        button.setAttribute( "class", "bubbleButton" );
+        button.style.cssText = ""
+                                + "background-color: transparent; "
+                                + "border-color: transparent; "
+                                + "position: absolute; "
+                                + "left: " + ( x + horizontalOffset ) + "px; "
+                                + "top: " + ( y + verticalOffset ) + "px; "
+                                + "height: " + ( diameter + lineWidth * 2 ) + "px; "
+                                + "width: "+ ( diameter + lineWidth * 2 ) + "px; "
+                                + "border-radius: " + ( diameter + lineWidth * 2 ) + "px; "
+                                + "margin: 0px; "
+                                + "border: 0px; "
+                                + "padding: 0px; ";
+        // button.setAttribute( "onclick", "" );   // place holder for functionality
+        box.appendChild( button );
+
+        // draw circle
+        context.beginPath();
+        context.arc( arcX, arcY, radius, 0, 2 * Math.PI, false );
+        context.lineWidth = lineWidth;
+        context.strokeStyle = getColour( amount );
+        context.stroke();
+
+        // add text
+        var amountText = "$".concat( Math.abs( amount ) );
+        context.font = "12px sans-serif";
+        context.fillStyle = "black";
+        context.fillText( name, centerText( name, arcX ), arcY + radius - 17 );
+        context.fillText( amountText, centerText( amountText, arcX ), arcY + radius - 5 );
+    };
+}
+
+function calculateSize( amount ) {
+    var size;
+    amount = Math.abs( amount );
+
+    if ( amount > 150 ) {
+        size = MAX_BUBBLE_SIZE;
+    } else {
+        size = -0.00894062 * Math.pow( amount, 2 ) + 3.33388 * amount + 100.057;
+    }
+
+    return size;
+}
+
+function centerText( text, posn ) {
+    return posn - context.measureText( text ).width / 2;
+}
+
+function getColour( amount ) {
+    var colour;
+
+    if ( amount > 0 ) {
+        colour = red;
+    } else {
+        colour = black;
+    }
+
+    return colour;
+}
+
+function generatePoints( ratio ) {
+    var points = [];
+    var x; var y; var radius; var angle = 0; var deltaAngle = 0; var biggestRadius = 0;
+    var radiusOffset = 0; var bubbleOffset = ( 25 * ratio ); var totalOffset;
+    var halfWidth = boxWidth / 2; var halfHeight = canvasHeight / 2;
+
+    for ( var i = 0; i < sessionStorage.getObject( "numBubbles" ); i++ ) {
+        radius = ( sessionStorage.getObject( "sizes" )[i] * ratio ) / 2;
+
+        if ( i == 0 ) {
+            x = halfWidth - radius;
+            y = halfHeight - radius;
+            radiusOffset = radius;
+        } else {
+            if ( i == 1 ) {
+                angle = 0; deltaAngle = Math.PI / 3;
+                biggestRadius = radius;
+            } else if ( i == 7 ) {
+                radiusOffset += ( 2 * biggestRadius ) + ( bubbleOffset );
+                angle = 0; deltaAngle = Math.PI / 6;
+                biggestRadius = radius;
+            } else {
+                angle += deltaAngle;
+            }
+
+            totalOffset = radiusOffset + bubbleOffset + radius;
+            x = halfWidth + totalOffset * Math.cos( angle ) - radius;
+            y = halfHeight - totalOffset * Math.sin( angle ) - radius;
+        }
+
+        points.push( [x, y] );
+    }
+
+
+    return points;
+}
+
+Array.prototype.insert = function ( index, item ) {
+    this.splice( index, 0, item );
+}
+
+Storage.prototype.setObject = function( key, object ) {
+    return this.setItem( key, JSON.stringify( object ) );
+}
+
+Storage.prototype.getObject = function ( key ) {
+    return JSON.parse( this.getItem( key ) );
+}
+
+Element.prototype.remove = function() {
+    this.parentElement.removeChild( this );
+}
+
+NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
+    for ( var i = 0; i < this.length; i++ ) {
+        if ( this[i] && this[i].parentElement ) {
+            this[i].parentElement.removeChild( this[i] );
+        }
+    }
+}
+
+
