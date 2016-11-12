@@ -2,7 +2,15 @@
 
 
 function enterUserName() {
-    addBubble( document.getElementById("other_user").value, document.getElementById("amount_owed").value )
+
+    var other_person;
+    if (document.getElementById("other_user").value != null){
+        other_person = document.getElementById("other_user").value
+    }
+    else if (document.getElementById("other_name").value != null){
+        other_person = document.getElementById("other_name").value
+    }
+    addBubble( other_person, document.getElementById("amount_owed").value )
 }
 
 function enterInput(){
@@ -12,8 +20,9 @@ function enterInput(){
 
 function addBubble(otherUserName, amountOwed) {
     if (document.getElementById("first_selection").value != "You"){
+        //alert("you");
         amountOwed *= -1;
-    }
+    } //else {alert("not you");}
 
     if ( amountOwed != 0 ) {
         var added = false; var posn;
