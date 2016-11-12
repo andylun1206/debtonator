@@ -34,8 +34,6 @@ function addBubble(otherUserName, amountOwed) {
             }
         }
 
-
-
         var temp;
         temp = sessionStorage.getObject( "names" ); temp.insert( posn, otherUserName ); sessionStorage.setObject( "names", temp );
         temp = sessionStorage.getObject( "amounts" ); temp.insert( posn, amountOwed ); sessionStorage.setObject( "amounts", temp );

@@ -71,7 +71,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
                                 + "margin: 0px; "
                                 + "border: 0px; "
                                 + "padding: 0px; ";
-        // button.setAttribute( "onclick", "" );   // place holder for functionality
+        // button.setAttribute( "onclick", "removeBubble(  )" );   // place holder for functionality
         box.appendChild( button );
 
         // draw circle
@@ -88,6 +88,28 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         context.fillText( name, centerText( name, arcX ), arcY + radius - 17 );
         context.fillText( amountText, centerText( amountText, arcX ), arcY + radius - 5 );
     };
+}
+
+function removeBubble( name ) {
+    var numBubbles = sessionStorage.getObject( "numBubbles" );
+    var names = sessionStorage.getObject( "names" );
+    var found = false;
+    var temp;
+
+    for ( var i = 0; i < numBubbles && !found; i++ ) {
+        if ( names[i] === name ) {
+            temp = sessionStorage.getObject( "names" ); temp.remove( i ); sessionStorage.setObject( "names", temp );
+            temp = sessionStorage.getObject( "amounts" ); temp.remove( i ); sessionStorage.setObject( "amounts", temp );
+            temp = sessionStorage.getObject( "sizes" ); temp.remove( i ); sessionStorage.setObject( "sizes", temp );
+            temp = sessionStorage.getObject( "images" ); temp.remove( i ); sessionStorage.setObject( "images", temp );
+            sessionStorage.setObject( "numBubbles", sessionStorage.getObject( "numBubbles" ) - 1 );
+            found = true;
+        }
+    }
+
+    if ( found ) {
+        redrawCanvas();
+    }
 }
 
 function calculateSize( amount ) {
@@ -161,8 +183,12 @@ function generatePoints( ratio ) {
     return points;
 }
 
-Array.prototype.insert = function ( index, item ) {
+Array.prototype.insert = function( index, item ) {
     this.splice( index, 0, item );
+}
+
+Array.prototype.remove = function( index ) {
+    this.splice( index, 1 );
 }
 
 Storage.prototype.setObject = function( key, object ) {
