@@ -70,8 +70,18 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
                                 + "border-radius: " + ( diameter + lineWidth * 2 ) + "px; "
                                 + "margin: 0px; "
                                 + "border: 0px; "
-                                + "padding: 0px; ";
+                                + "padding: 0px; "
+                                +"text-shadow: 2px 2px 0px #FF0000";
         // button.setAttribute( "onclick", "removeBubble(  )" );   // place holder for functionality
+        //button.setAttribute( "onclick", "confirmPayment("+getColour(amount)+")" );
+        if (amount < 0){
+            //button.setAttribute( "onclick", "blackConfirmPayment(name)");
+            button.onclick = function(){confirmPayment(name, getColour(amount));}
+        } else{
+            button.onclick = function(){confirmPayment(name, getColour(amount));}
+            //button.setAttribute( "onclick", "redConfirmPayment( )" );}
+        }
+
         box.appendChild( button );
 
         // draw circle
@@ -85,9 +95,52 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         var amountText = "$".concat( Math.abs( amount ) );
         context.font = "12px sans-serif";
         context.fillStyle = "black";
+        //context.css("text-shadow", "2px 2px 0px #FF0000");
         context.fillText( name, centerText( name, arcX ), arcY + radius - 17 );
         context.fillText( amountText, centerText( amountText, arcX ), arcY + radius - 5 );
     };
+}
+
+function confirmPayment(name, colour){
+    if (colour == "#FF0000"){
+        $('#redModal').modal('show');
+        document.getElementById("redYes").onclick = function(){delay(name);}
+    }else{
+        $('#blackModal').modal('show');
+        document.getElementById("blackYes").onclick = function(){removeBubble(name);}
+    }
+}
+
+/*function blackConfirmPayment(name){
+    $('#blackModal').modal('show');
+    document.getElementById("blackYes").onclick = function(){removeBubble(name);}//setAttribute("onclick", "removeBubble(name)");
+}
+
+function redConfirmPayment(){
+    $('#redModal').modal('show');
+}*/
+
+/*function datahide()
+{
+    $("[data-hide]").on("click", function () {
+        $("." + $(this).attr("data-hide")).hide();
+    });
+}*/
+
+/*$(function(){
+    $("[data-hide]").on("click", function(){
+        $("." + $(this).attr("data-hide")).hide();
+        // -or-, see below
+        // $(this).closest("." + $(this).attr("data-hide")).hide();
+    });
+});*/
+
+function delay(name){
+    //document.getElementById("confirm_alert").hide().delay(2500).show('medium');
+    //.update(name +" confirmed your payment")
+    //$("#confirm_alert_button").onclick = function(){removeBubble(name);}
+    $("#confirm_alert").hide().delay(1000).show('medium');
+    window.setTimeout(removeBubble(name), 1200);
 }
 
 function removeBubble( name ) {

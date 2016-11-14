@@ -11,8 +11,11 @@
     <link href="resources/css/bootstrap.min.css" type = "text/css" rel="stylesheet">
     <link href="resources/css/custom_template.css" type = "text/css" rel="stylesheet">
 
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="resources/js/mainscreen.js"></script>
     <script src="resources/js/addTab.js"></script>
+
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -41,11 +44,11 @@
                 <!--<li class="active"><a href="#">Home <img src="resources/img/house.png" width="30"></a></li>
                 <li><a href="#">Add a Tab <img src="resources/img/plus_sign.png" width="30"></a></li>
                 <li><a href="#">Notification Centre <img src="resources/img/mail.png" width="30"></a></li>-->
-                <li><a href="mainscreen.html" class="active"><img src="resources/img/house.png" width="20"></a></li>
-                <li><a href="addTab.html"><img src="resources/img/plus_sign.png" width="20"></a></li>
-                <li><a href="#"><img src="resources/img/mail.png" width="20"></a></li>
+                <li><a href="mainscreen.html" class="active" data-toggle="tooltip" title="Home"><img src="resources/img/house.png" width="20"></a></li>
+                <li><a href="addTab.html" data-toggle="tooltip" title="Add a Tab"><img src="resources/img/plus_sign.png" width="20"></a></li>
+                <li><a href="#" data-toggle="tooltip" title="Notification Centre"><img src="resources/img/mail.png" width="20"></a></li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="profile_dropdown"><!--My Profile--><img id="profile_img" src="resources/img/silhouette.png" width="20"><b class="caret"></b></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="My Profile" id="profile_dropdown"><!--My Profile--><img id="profile_img" src="resources/img/silhouette.png" width="20"><b class="caret"></b></a>
                     <ul class="dropdown-menu">
                         <li><a href="#">Edit my Profile</a></li>
                         <li><a href="#">Preferences</a></li>
@@ -62,8 +65,57 @@
     </div>
 
 
+
 </div>
 <div id="box">
+    <div id="blackModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>Did you recieve the payment in full?</label>
+
+                </div>
+                <div class="modal-footer">
+                    <button id="blackYes" type="button" class="btn btn-succes" data-dismiss="modal">Yes!</button>
+                    <button type="button" class="btn" data-dismiss="modal"> Not yet! </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="redModal" class="modal fade" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Confirmation</h4>
+                </div>
+                <div class="modal-body">
+
+                    <label>Did you pay the payment in full?</label>
+
+                </div>
+                <div class="modal-footer">
+                    <button id = "redYes" type="button" class="btn btn-success" data-dismiss="modal">Yes!</button>
+                    <button type="button" class="btn" data-dismiss="modal"> Not yet! </button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <div id="confirm_alert" class="alert alert-success alert-dismissable" style="display: none">
+        <button id="confirm_alert_button" type="button" class="close" data-hide="alert" aria-hidden="true">&times;</button>
+        Regina confirmed your payment!
+    </div>
     <canvas id = "bubblesCanvas" height = "825">
        <script>
             initialize();
@@ -75,8 +127,7 @@
 
 
 
-<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
 <!-- Include all compiled plugins (below), or include individual files as needed -->
 <script src="resources/js/bootstrap.min.js"></script>
 </body>
