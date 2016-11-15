@@ -1,6 +1,6 @@
 var canvas; var context; var box;
 
-var canvasWidth = 1920; var canvasHeight = 500; var windowOffsetX = 120;
+var canvasWidth = 1920; var canvasHeight = document.documentElement.clientHeight - 153; var windowOffsetX = 120;
 var boxWidth;
 
 var MAX_BUBBLE_SIZE = 350;
@@ -30,7 +30,9 @@ function redrawCanvas() {
     box = document.getElementById( 'box' );
 
     boxWidth = box.clientWidth - windowOffsetX;
+    canvasHeight = document.documentElement.clientHeight - 153;
     canvas.width = boxWidth;
+    canvas.height = canvasHeight;
     var ratio = boxWidth / canvasWidth;
 
     var points = generatePoints( ratio );
