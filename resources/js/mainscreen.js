@@ -1,6 +1,6 @@
 var canvas; var context; var box;
 
-var canvasWidth = 1920; var canvasHeight = 825; var windowOffsetX = 120;
+var canvasWidth = 1920; var canvasHeight = 500; var windowOffsetX = 120;
 var boxWidth;
 
 var MAX_BUBBLE_SIZE = 350;
