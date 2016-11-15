@@ -139,8 +139,10 @@ function delay(name){
     //document.getElementById("confirm_alert").hide().delay(2500).show('medium');
     //.update(name +" confirmed your payment")
     //$("#confirm_alert_button").onclick = function(){removeBubble(name);}
-    $("#confirm_alert").hide().delay(1000).show('medium');
-    window.setTimeout(removeBubble(name), 1200);
+    //$("#confirm_alert").innerHTML = name+" confirmed your payment"
+    $("#confirm_alert_text").text(name+" confirmed your payment!");
+    $("#confirm_alert").hide().delay(4000).show('medium');
+    window.setTimeout(removeBubble, 4500, name);
 }
 
 function removeBubble( name ) {
