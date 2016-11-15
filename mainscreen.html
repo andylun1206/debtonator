@@ -63,9 +63,6 @@
             </ul>
         </div>
     </div>
-
-
-
 </div>
 <div id="box">
     <div id="blackModal" class="modal fade" role="dialog">
@@ -122,10 +119,35 @@
             window.addEventListener( "resize", redrawCanvas, false );
         </script>
     </canvas>
+   <!-- <div id="key">
+        <h3>Key</h3>
+        <p><span style="color: #FF0000; font-weight: bold">Red</span> circle - you owe money</p>
+        <p><span style="font-weight: bold">Black</span> circle - someone owes you money</p>
+    </div>-->
 </div>
 
-
-
+<!--
+<div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
+    <div class="container">
+        <div class="navbar-text" style="text-align: center">
+            <h3>Key</h3>
+            <p><span style="color: #FF0000; font-weight: bold">Red</span> circle - you owe money
+            <span style="font-weight: bold">Black</span> circle - someone owes you money</p>
+        </div>
+    </div>
+</div>
+-->
+<nav class="navbar navbar-inverse navbar-fixed-bottom">
+    <div class="container-fluid" style="pointer-events: none">
+        <div class="navbar-header">
+            <a class="navbar-brand">Key</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li><a><span style="color: #FF0000; font-weight: bold">Red</span> circle - you owe money</a></li>
+            <li><a><span style="font-weight: bold">Black</span> circle - someone owes you money</a></li>
+        </ul>
+    </div>
+</nav>
 
 
 <!-- Include all compiled plugins (below), or include individual files as needed -->

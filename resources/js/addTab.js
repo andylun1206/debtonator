@@ -3,8 +3,10 @@
 function getUserInput() {
     var other_person;
 
-    if ( ( other_person = document.getElementById( "other_user" ).value ) != null ) {
-    } else if ( ( other_person = document.getElementById( "other_name" ).value ) != null ) { }
+    if ( ( document.getElementById( "other_user" ).value ) != null && ( document.getElementById( "other_user" ).value ) != "" ) { other_person = document.getElementById( "other_user" ).value;
+    } else if ( ( document.getElementById( "other_name" ).value ) != null && ( document.getElementById( "other_name" ).value ) != "" ) {
+        other_person = document.getElementById( "other_name" ).value
+    }
 
     if ( document.getElementById( "first_selection" ).value === document.getElementById( "second_selection" ).value ) {
         alert( "Borrower = Loaner" );
