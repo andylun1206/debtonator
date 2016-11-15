@@ -70,8 +70,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
                                 + "border-radius: " + ( diameter + lineWidth * 2 ) + "px; "
                                 + "margin: 0px; "
                                 + "border: 0px; "
-                                + "padding: 0px; "
-                                +"text-shadow: 2px 2px 0px #FF0000";
+                                + "padding: 0px; ";
         // button.setAttribute( "onclick", "removeBubble(  )" );   // place holder for functionality
         //button.setAttribute( "onclick", "confirmPayment("+getColour(amount)+")" );
         if (amount < 0){
@@ -94,7 +93,11 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         // add text
         var amountText = "$".concat( Math.abs( amount ) );
         context.font = "12px sans-serif";
-        context.fillStyle = "black";
+        context.fillStyle = "white";
+        context.strokestyle = "black";
+        context.lineWidth = 4;
+        context.strokeText(name, centerText( name, arcX ), arcY + radius - 17);
+        context.strokeText(amountText, centerText( amountText, arcX ), arcY + radius -5);
         //context.css("text-shadow", "2px 2px 0px #FF0000");
         context.fillText( name, centerText( name, arcX ), arcY + radius - 17 );
         context.fillText( amountText, centerText( amountText, arcX ), arcY + radius - 5 );
