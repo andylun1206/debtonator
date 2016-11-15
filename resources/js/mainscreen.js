@@ -111,21 +111,14 @@ function confirmPayment(name, colour){
     }
 }
 
-/*function blackConfirmPayment(name){
-    $('#blackModal').modal('show');
-    document.getElementById("blackYes").onclick = function(){removeBubble(name);}//setAttribute("onclick", "removeBubble(name)");
-}
 
-function redConfirmPayment(){
-    $('#redModal').modal('show');
-}*/
-
-/*function datahide()
+function datahide()
 {
     $("[data-hide]").on("click", function () {
         $("." + $(this).attr("data-hide")).hide();
     });
-}*/
+    //document.getElementById("confirm_alert").hide();
+}
 
 /*$(function(){
     $("[data-hide]").on("click", function(){
