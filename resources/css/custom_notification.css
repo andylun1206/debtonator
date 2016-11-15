@@ -1,9 +1,11 @@
-body {
-	padding-top: 70px;
+
+#notifications li {
+	font-family: Helvetica;
+	padding: 1em 0;
 }
 
-li {
-	font-family: georgia;
+#messages li {
+	font-family: Helvetica;
 	padding: 1em 0;
 }
 
@@ -15,6 +17,8 @@ li {
 #lentOn.right {
 	color: #FF0000;
 	float: right;
+	padding-right: 10px;
+	font-size: 12px;
 }
 
 #sent{
