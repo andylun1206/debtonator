@@ -96,7 +96,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         var amountText = "$".concat( Math.abs( amount ) );
         context.font = "12px sans-serif";
         context.fillStyle = "white";
-        context.strokestyle = "black";
+        //context.strokestyle = "black";
         context.lineWidth = 4;
         context.strokeText(name, centerText( name, arcX ), arcY + radius - 17);
         context.strokeText(amountText, centerText( amountText, arcX ), arcY + radius -5);
