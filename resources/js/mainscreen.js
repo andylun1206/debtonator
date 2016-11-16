@@ -107,7 +107,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
 }
 
 function confirmPayment(name, colour){
-    if (colour == "#FF0000"){
+    if (colour == red){
         $('#redModal').modal('show');
         document.getElementById("redYes").onclick = function(){delay(name);}
     }else{
@@ -140,7 +140,8 @@ function delay(name){
     //$("#confirm_alert").innerHTML = name+" confirmed your payment"
     $("#confirm_alert_text").text(name+" confirmed your payment!");
     $("#confirm_alert").hide().delay(4000).show('medium');
-    window.setTimeout(removeBubble, 4500, name);
+    window.setTimeout(removeBubble, 4000, name);
+    $("#confirm_alert").hide().delay(4000).hide('medium');
 }
 
 function removeBubble( name ) {
