@@ -60,6 +60,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         var button = document.createElement( "button" );
         button.setAttribute( "type", "button" );
         button.setAttribute( "class", "bubbleButton" );
+        button.setAttribute( "title", "Click to Confirm." );
         button.style.cssText = ""
                                 + "background-color: transparent; "
                                 + "border-color: transparent; "
@@ -73,15 +74,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
                                 + "margin: 0px; "
                                 + "border: 0px; "
                                 + "padding: 0px; ";
-        // button.setAttribute( "onclick", "removeBubble(  )" );   // place holder for functionality
-        //button.setAttribute( "onclick", "confirmPayment("+getColour(amount)+")" );
-        if (amount < 0){
-            //button.setAttribute( "onclick", "blackConfirmPayment(name)");
-            button.onclick = function(){confirmPayment(name, getColour(amount));}
-        } else{
-            button.onclick = function(){confirmPayment(name, getColour(amount));}
-            //button.setAttribute( "onclick", "redConfirmPayment( )" );}
-        }
+        button.onclick = function(){confirmPayment(name, getColour(amount));};
 
         box.appendChild( button );
 
@@ -239,23 +232,23 @@ function generatePoints( ratio ) {
 
 Array.prototype.insert = function( index, item ) {
     this.splice( index, 0, item );
-}
+};
 
 Array.prototype.remove = function( index ) {
     this.splice( index, 1 );
-}
+};
 
 Storage.prototype.setObject = function( key, object ) {
     return this.setItem( key, JSON.stringify( object ) );
-}
+};
 
 Storage.prototype.getObject = function ( key ) {
     return JSON.parse( this.getItem( key ) );
-}
+};
 
 Element.prototype.remove = function() {
     this.parentElement.removeChild( this );
-}
+};
 
 NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
     for ( var i = 0; i < this.length; i++ ) {
@@ -263,6 +256,6 @@ NodeList.prototype.remove = HTMLCollection.prototype.remove = function() {
             this[i].parentElement.removeChild( this[i] );
         }
     }
-}
+};
 
 
