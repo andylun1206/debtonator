@@ -49,6 +49,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
     var radius = diameter / 2;
     var arcX = x + radius; var arcY = y + radius;
     var lineWidth = 3; var horizontalOffset = 61; var verticalOffset = 83;
+    var colour = getColour( amount );
 
     var img = document.createElement( "img" );
     img.src = "resources/img/" + imgSrc + "ProfilePic.png";
@@ -57,10 +58,16 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
         context.drawImage( img, x, y, diameter, diameter );
 
         // add button
+        var titleText;
+        if ( colour == red ) {
+            titleText = "Click to confirm that you have paid " + name + ".";
+        } else {
+            titleText = "Click to confirm that " + name + " has paid you.";
+        }
         var button = document.createElement( "button" );
         button.setAttribute( "type", "button" );
         button.setAttribute( "class", "bubbleButton" );
-        button.setAttribute( "title", "Click to Confirm." );
+        button.setAttribute( "title", titleText );
         button.style.cssText = ""
                                 + "background-color: transparent; "
                                 + "border-color: transparent; "
@@ -74,7 +81,7 @@ function drawBubble( x, y, diameter, name, amount, imgSrc ) {
                                 + "margin: 0px; "
                                 + "border: 0px; "
                                 + "padding: 0px; ";
-        button.onclick = function(){confirmPayment(name, getColour(amount));};
+        button.onclick = function(){confirmPayment(name, colour);};
 
         box.appendChild( button );
 
