@@ -4,7 +4,7 @@ var canvasWidth = 1920; var canvasHeight = document.documentElement.clientHeight
 var boxWidth;
 
 var MAX_BUBBLE_SIZE = 350;
-var red = '#FF0000'; var black = '#000000';
+var red = '#d30000'; var black = '#000000';
 
 function initialize() {
     if ( typeof( Storage ) !== "undefined" ) {
